@@ -1,46 +1,53 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate")
 
-var numberChars = [0123456789];
+var numberChars = ["0123456789"];
 var upperChars = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 var lowerChars = ["abcdefghijklmnopqrstuvwxyz"];
 var specialChars = ["!@#$%^&*()_-+={[}]|:;'<>/?"];
 var allChars = "";
 
 
-function generatePassword(){
 
+function generatePassword() {
+  let generatedPassword = "";
 
-  var passwordLength = prompt("How long would you like your password to be in terms of Characters?");
+  var passwordLength = parseInt(prompt("How long would you like your password to be in terms of Characters?"))
   // If password is within peramiters
-  // if (passwordLength < 8 || passwordLength > 128)
-  // alert("Password must be between 8 and 128 characters")
-  // return false;
-  console.log(allChars);
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert("Password must be between 8 and 128 characters")
+    return "Password must be between 8 and 128 characters";
+  }
+  
+  
+  allChars = []
+  var checkOne = confirm("Would you like to use special Characters?");
+  if (checkOne) {
+    allChars += specialChars;
 
-var checkOne = confirm("Would you like to use special Characters?");
-if (checkOne === true) {
-  allChars += specialChars;
+  }
+  var checkTwo = confirm("Would you like to use uppercase letters?");
+  if (checkTwo) {
+    allChars += upperChars;
+
+  }
+  var checkThree = confirm("Would you like to use lowercase letters?");
+  if (checkThree) {
+    allChars += lowerChars;
+  }
+
+  var checkFour = confirm("Would you like to use numbers?");
+  if (checkFour) {
+    allChars += numberChars;
+  }
+  if (allChars.length === 0) { return "Needs to be between 8 and 128 characters" }
  
-}
-var checkTwo = confirm("Would you like to use uppercase letters?");
-if (checkTwo === true) {
-allChars += upperChars;
 
-}
-var checkThree = confirm("Would you like to use lowercase letters?");
-if (checkThree === true) {
-allChars += lowerChars;
-}
-
-var checkFour = confirm("Would you like to use numbers?");
-if (checkFour === true) {
-  allChars += numberChars;
-}
-
-for (var passwordLength = ) {
-
-}
+  for (var i = 0; i <= passwordLength; i++) {
+    var randomNumber = Math.floor(Math.random() * allChars.length);
+    generatedPassword += allChars.substring(randomNumber, randomNumber + 1);
+  }
+  return generatedPassword;
 }
 
 // Write password to the #password input
